@@ -11,8 +11,7 @@ import javax.persistence.TypedQuery;
 public abstract class AbstractDao<T, PK extends Serializable> {
 
 	@SuppressWarnings("unchecked")
-	private final Class<T> entityClass =
-			(Class<T>) ( (ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	private final Class<T> entityClass = (Class<T>) ( (ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	
 	@PersistenceContext
 	private EntityManager entityManager;
