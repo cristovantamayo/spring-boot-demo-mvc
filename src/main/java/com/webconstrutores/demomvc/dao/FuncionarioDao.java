@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.webconstrutores.demomvc.domain.Funcionario;
 
-public interface FuncionalDao {
+public interface FuncionarioDao {
 	void save(Funcionario funcionario);
 	void update(Funcionario funcionario);
 	void delete(Long id);
