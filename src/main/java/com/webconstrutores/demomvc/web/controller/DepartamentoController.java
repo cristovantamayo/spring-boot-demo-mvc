@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webconstrutores.demomvc.domain.Departamento;
 import com.webconstrutores.demomvc.service.DepartamentoService;
@@ -30,9 +31,10 @@ public class DepartamentoController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Departamento departamento) {
+	public String salvar(Departamento departamento, RedirectAttributes attr) {
 		service.salvar(departamento);
-		return "redirect:/departamento/cadastro";
+		attr.addFlashAttribute("success", "Departamento inserido com sucesso.");
+		return "redirect:/departamentos/listar";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -42,15 +44,19 @@ public class DepartamentoController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Departamento departamento) {
+	public String editar(Departamento departamento, RedirectAttributes attr) {
 		service.editar(departamento);
+		attr.addFlashAttribute("success", "Departamento editado com sucesso.");
 		return "redirect:/departamentos/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		if(!service.departamentoTemCargos(id)) {
+		if(service.departamentoTemCargos(id)) {
+			model.addAttribute("fail", "Departamento não removido. Possui cargo(s) vinculado(s).");
+		} else {
 			service.excluir(id);
+			model.addAttribute("success", "Departamento excluído com sucesso.");
 		}
 		return listar(model); // ou redirect
 	}
