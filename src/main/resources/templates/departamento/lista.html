@@ -36,16 +36,18 @@
 								<a class="btn btn-info btn-sm" th:href="@{/departamentos/editar/{id} (id=${dep.id}) }" role="button"> <span
 										class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button></td>
+								<button th:id="${ 'btn_departamentos/excluir/' + dep.id}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#divModal">
+									<span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
+								</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-
+		
+		<div th:replace="fragments/modal :: modal"></div>
+		
 	</section>
 </body>
 </html>
