@@ -15,21 +15,21 @@ import java.util.List;
 public class Cargo extends AbstractEntity<Long> {
 
 	@Column(name = "nome", nullable = false, unique = true, length = 60)
-	private String nomeString;
+	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_departamento_fk")
+	@JoinColumn(name = "id_departamento_fk", nullable = false)
 	private Departamento departamento;
 	
 	@OneToMany(mappedBy = "cargo")
 	private List<Funcionario> funcionarios;
 
-	public String getNomeString() {
-		return nomeString;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeString(String nomeString) {
-		this.nomeString = nomeString;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Departamento getDepartamento() {
@@ -47,4 +47,10 @@ public class Cargo extends AbstractEntity<Long> {
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
 	}
+
+	@Override
+	public String toString() {
+		return "Cargo [nome=" + nome + ", departamento=" + departamento + "]";
+	}
+	
 }
