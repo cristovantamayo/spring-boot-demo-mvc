@@ -23,6 +23,9 @@
 		
 			<form th:action="${cargo.id == null} ? @{/cargos/salvar} : @{/cargos/editar}" th:object="${cargo}" method="POST" id="frm">	
 				<div class="form-row">
+					<div class="col-md-10"><div th:replace="fragments/validacao :: validacao"></div></div>
+				</div>  	
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome do Cargo</label>
 						<input type="text" class="form-control" id="nome" placeholder="Nome Cargo" autofocus="autofocus" th:field="*{nome}" />
