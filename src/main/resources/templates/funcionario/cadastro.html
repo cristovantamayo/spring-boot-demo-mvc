@@ -59,14 +59,14 @@
 	                        <input type="date" class="form-control" id="dataSaida" th:field="*{dataSaida}"
 	                               th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'"/>
 	                        <div class="invalid-feedback">
-	
+								<span th:errors="*{dataSaida}"></span>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="cargo">Cargo</label>
-	                        <select id="cargo" class="form-control" name="cargo" th:field="*{cargo}"
+	                        <select id="cargo" class="form-control" th:field="*{cargo}"
 	                               th:classappend="${#fields.hasErrors('cargo')} ? 'is-invalid'">
 	                            <option value="">Selecione...</option>
 	                            <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}">...</option>
