@@ -21,7 +21,6 @@ public class FuncionarioValidador implements Validator {
 		LocalDate entrada = f.getDataEntrada();
 		if(f.getDataSaida() != null) {
 			if (f.getDataSaida().isBefore(entrada)) {
-				System.out.println("--------------------//////////////////");
 				errors.rejectValue("dataSaida", "PosteriorDataEntrada.funcionario.dataSaida");
 			}
 		}
